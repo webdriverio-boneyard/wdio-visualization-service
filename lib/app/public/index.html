@@ -1,0 +1,15 @@
+<!doctype html>
+<title>WebdriverIO Visualizer</title>
+<script src="/socket.io/socket.io.js"></script>
+
+<h1>WebdriverIO Analyzer</h1>
+<div id="commands"></div>
+
+<script>
+  var socket = io()
+  var commandContainer = document.getElementById('commands')
+
+  socket.on('command', function (payload) {
+    commandContainer.innerHTML += payload.commandName + ' - ' + payload.commandArgs.join(', ') + '<br>'
+  })
+</script>

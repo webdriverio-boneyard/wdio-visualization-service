@@ -1,2 +1,2 @@
-var VisualizationService = require('./build/visualizer')
+var VisualizationService = require('./build/service')
 module.exports = new VisualizationService()

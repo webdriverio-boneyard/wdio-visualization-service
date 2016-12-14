@@ -16,10 +16,18 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        copy: {
+            app: {
+                expand: true,
+                cwd: 'lib/app',
+                src: 'public/**',
+                dest: 'build/app/'
+            }
+        },
         watch: {
             dist: {
-                files: ['./lib/**/*.js'],
-                tasks: ['babel:dist']
+                files: ['./lib/**/*'],
+                tasks: ['babel:dist', 'copy:app']
             }
         },
         eslint: {
@@ -47,7 +55,8 @@ module.exports = function (grunt) {
         grunt.task.run([
             'eslint',
             'clean',
-            'babel'
+            'babel',
+            'copy'
         ])
     })
     grunt.registerTask('release', 'Bump and tag version', function (type) {
