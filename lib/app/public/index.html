@@ -1,15 +1,50 @@
 <!doctype html>
 <title>WebdriverIO Visualizer</title>
+<link rel="stylesheet" href="http://webdriver.io/css/screen.css">
+<link rel="stylesheet" href="/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 
-<h1>WebdriverIO Analyzer</h1>
+<nav class="mainnav">
+  <ul>
+    <li><a href="/"><h1 class="logo">I/O</h1></a></li>
+    <li><h2>WebdriverIO Analyzer</h2></li>
+    <li class="timer">run time: <i id="time">0s</i></li>
+  </ul>
+</nav>
 <div id="commands"></div>
 
 <script>
-  var socket = io()
-  var commandContainer = document.getElementById('commands')
+    var startTime = (new Date()).getTime()
+    var socket = io()
+    var commandContainer = document.getElementById('commands')
+    var timer = document.getElementById('time')
 
-  socket.on('command', function (payload) {
-    commandContainer.innerHTML += payload.commandName + ' - ' + payload.commandArgs.join(', ') + '<br>'
-  })
+    socket.on('command', addCommand = function (payload) {
+        var command = $('<div />').addClass('command current')
+        var header = $('<h3 />').addClass('icon-circle-arrow-right').html(payload.commandName)
+        var subHeader = $('<h4 />').html(payload.commandName + '(' + payload.commandArgs.join(', ') + ')')
+        var params = $('<div />').addClass('parameters')
+
+        payload.commandArgs.forEach(function (arg) {
+            params.append($('<span />').addClass('parameter icon-angle-right').html(arg))
+        })
+        command.append(header).append(subHeader).append(params)
+        $(commandContainer).find('.command').removeClass('current').addClass('last')
+        $(commandContainer).prepend(command)
+    })
+
+    var interval = setInterval(function () {
+        var now = (new Date()).getTime()
+        var diff = now - startTime
+        var s = Math.floor(diff / 1000) % 60
+        var min = Math.floor(diff / 1000 / 60)
+
+        if (min) {
+            s = min + 'min ' + s
+        }
+
+        s += 's'
+        timer.innerHTML = s
+    }, 1000)
 </script>
