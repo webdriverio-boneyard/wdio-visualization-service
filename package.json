@@ -1,0 +1,65 @@
+{
+  "name": "wdio-visualization-service",
+  "version": "0.0.4",
+  "description": "WebdriverIO service to visualize Selenium steps takes on the website.",
+  "main": "build/reporter.js",
+  "scripts": {
+    "test": "grunt",
+    "build": "grunt build",
+    "prepublish": "npm prune && npm run build",
+    "dev": "mocha --watch -r should -t 50000 --compilers js:babel/register test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdriverio/wdio-visualization-service.git"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "keywords": [
+    "webdriverio",
+    "wdio",
+    "wdio-service",
+    "selenium",
+    "webdriver",
+    "visualizer",
+    "standalone",
+    "server",
+    "tests"
+  ],
+  "author": "Christian Bromann <christian@saucelabs.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webdriverio/wdio-visualization-service/issues"
+  },
+  "homepage": "https://github.com/webdriverio/wdio-visualization-service#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.20.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-es2016": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.12.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
+    "grunt-bump": "^0.8.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^19.0.0",
+    "grunt-mocha-istanbul": "^5.0.2",
+    "grunt-npm": "0.0.2",
+    "isparta": "^4.0.0",
+    "istanbul": "^0.4.5",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.2.0",
+    "should": "^11.1.2",
+    "sinon": "^1.17.6"
+  },
+  "contributors": []
+}
